@@ -1,0 +1,22 @@
+Autograder Summary
+
+-- Test 1 --
+Function: find_max
+Input: [-1, -2]
+Expected output: -1
+Actual output: 0
+Result: Fail
+
+-- Test 2 --
+Function: reverse
+Input: [1,2,3,4]
+Expected output: [4,3,2,1]
+Actual output: [4,2,3,1]
+Result: Fail
+
+-- Test 3 --
+Function: shift_by_one
+Input: [1,2,3]
+Expected output: [3,1,2]
+Actual output: [3,1,2]
+Result: Pass
