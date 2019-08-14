@@ -5,14 +5,14 @@ import codepost
 from helpers import parse_test_output, find_function_definition
 
 # Set some required variables
-course_name = 'codePost'
-course_period = 'demo'
-assignment_name = 'Loops'
+course_name = '<COURSE NAME>'
+course_period = '<COURSE PERIOD>'
+assignment_name = '<ASSIGNMENT NAME>'
 
 test_output_file = 'tests.txt'
 student_code_file = 'homework.py'
 
-codepost.configure_api_key(api_key='6da9c886376d9ebe21d3c539691b343ea7ac50a1')
+codepost.configure_api_key(api_key='<YOUR API KEY>')
 
 ###################################################################################################
 
