@@ -2,31 +2,30 @@
 
 # Imports
 import codepost
-from helpers import parseTestOutput, findFunctionDefinition
+from helpers import parse_test_output, find_function_definition
 
 # Set some required variables
-course_name = 'COURSE_NAME'
-course_period = 'COURSE_PERIOD'
-assignment_name = 'ASSIGNMENT_NAME'
+course_name = 'codePost'
+course_period = 'demo'
+assignment_name = 'Loops'
 
 test_output_file = 'tests.txt'
 student_code_file = 'homework.py'
 
-codepost.configure_api_key(api_key='YOUR API KEY')
+codepost.configure_api_key(api_key='6da9c886376d9ebe21d3c539691b343ea7ac50a1')
 
 ###################################################################################################
 
 # try to find course
 course_list = codepost.course.list_available(name=course_name, period=course_period)
 if len(course_list) == 0:
-    print("ERROR: couldn't find course with name %s and period %s" % (course_name, course_period))
-    return
+    raise Exception("Couldn't find course with name %s and period %s" % (course_name, course_period))
 this_course = course_list[0]
 
 # try to find assignment
 this_assignment = this_course.assignments.by_name(name=assignment_name)
 if this_assignment is None:
-    print("ERROR: couldn't find assignment with name %s in specified course" % (assignment_name))
+    raise Exception("ERROR: couldn't find assignment with name %s in specified course" % (assignment_name))
 
 # retrieve list of assignment's submissions
 submissions = this_assignment.list_submissions()
@@ -41,14 +40,14 @@ for submission in submissions:
     if (test_file is not None) and (student_code is not None):
 
         # the 'code' of the test output file is the test output
-        tests_by_function = parseTestOutput(test_file.code)
+        tests_by_function = parse_test_output(test_file.code)
 
         # loop over the functions which were tested at least once
         for function_name in tests_by_function.keys():
 
             # use helper function to figure out where the function corresponding to function_name
             # was defined
-            where_to_place = findFunctionDefinition(function_name, student_code.code)
+            where_to_place = find_function_definition(function_name, student_code.code)
 
             if where_to_place is not None:
 
@@ -65,6 +64,6 @@ for submission in submissions:
                 }
 
                 # post the comment to codePost
-                print(codepost.comment.create(**comment))
+                codepost.comment.create(**comment)
 
 

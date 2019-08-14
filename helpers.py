@@ -4,7 +4,7 @@
 
 import re
 
-def parseTestOutput(text):
+def parse_test_output(text):
   """
   Input: contents of an automated test script with tests of the form shown in the example
   tests.txt file in this repo
@@ -50,7 +50,7 @@ def parseTestOutput(text):
 
   return tests
 
-def findFunctionDefinition(function_name, code):
+def find_function_definition(function_name, code):
   """
   Search student code for the definition of a function named function_name.
   If found, return where the function definition starts and ends (line and char).
